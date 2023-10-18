@@ -7,7 +7,7 @@ abstract class ApiManager{
 
 
   static const String baseUrl = "newsapi.org";
-  static const String apiKey = "d4d3e667974241aab3e7049725b12644";
+  static const String apiKey = "ca8aec7f6dba4a078b911ccf7dd2095e";
 
   static Future<SourcesResponse> getSources(String categoryId) async {
     try {
@@ -27,11 +27,11 @@ abstract class ApiManager{
 
 
   // Uri url = Uri.parse("https://$baseUrl/v2/everything?apiKey=$apiKey&sources=$sourceId");
-  static Future<ArticlesResponses> getArticles(String sourceId)async{
+  static Future<ArticlesResponses> getArticles({required String requestParameter, required String stringOfRequestParameter})async{
     try{
       Uri url = Uri.https(baseUrl, "/v2/everything", {
         "apiKey": apiKey,
-        "sources": sourceId
+        requestParameter: stringOfRequestParameter
       });
       Response response = await get(url);
       ArticlesResponses articlesResponse =
@@ -40,6 +40,7 @@ abstract class ApiManager{
           articlesResponse.articles?.isNotEmpty == true){
         return articlesResponse;
       }else {
+        print("Erorrrrrrrrrrrrrrrrrrrrrrrrr");
         throw Exception(articlesResponse.message);
       }
     }catch(_){

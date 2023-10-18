@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/data/model/articles_responses/articles_responses.dart';
@@ -37,18 +38,14 @@ class ArticleDetails extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child:Image.network(
-                    article.urlToImage??AppAssets.notFoundImage,
+                child: CachedNetworkImage(
+                  imageUrl: article.urlToImage ?? "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png",
+                  errorWidget: (_, __, ___) => const Icon(Icons.error),
+                  progressIndicatorBuilder: (_, __, progress) => Center(
+                      child: CircularProgressIndicator(value: progress.progress,)),
                   height: MediaQuery.of(context).size.height * .25,
+                  fit: BoxFit.cover,
                 ),
-                // CachedNetworkImage(
-                //   imageUrl: article.urlToImage ?? "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png",
-                //   errorWidget: (_, __, ___) => const Icon(Icons.error),
-                //   progressIndicatorBuilder: (_, __, progress) => Center(
-                //       child: CircularProgressIndicator(value: progress.progress,)),
-                //   height: MediaQuery.of(context).size.height * .25,
-                //   fit: BoxFit.cover,
-                // )
               ),
               const SizedBox(
                 height: 15,

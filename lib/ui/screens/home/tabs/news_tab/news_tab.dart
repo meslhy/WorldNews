@@ -44,7 +44,7 @@ class _NewsTabState extends State<NewsTab> with TickerProviderStateMixin{
         children: [
           TabBar(
             onTap: (index) {
-              currentTabIndex = index;
+              currentTabIndex = index ;
               setState(() {});
             },
             isScrollable: true,
