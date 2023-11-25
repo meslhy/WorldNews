@@ -6,9 +6,7 @@ A new Flutter project.
 
 This project created to search for any news in world.
 
-![WhatsApp Image 2023-11-25 at 6 30 14 PM](https://github.com/meslhy/news_app/assets/100445840/006487ad-c1ba-4b10-9436-9c86cb565bfc)
-
-![WhatsApp Image 2023-11-25 at 6 30 16 PM](https://github.com/meslhy/news_app/assets/100445840/aad01760-2caa-45fa-9808-7943a4fb159a)
+![WhatsApp Image 2023-11-25 at 6 30 14 PM](https://github.com/meslhy/news_app/assets/100445840/006487ad-c1ba-4b10-9436-9c86cb565bfc)![WhatsApp Image 2023-11-25 at 6 30 16 PM](https://github.com/meslhy/news_app/assets/100445840/aad01760-2caa-45fa-9808-7943a4fb159a)
 
 ![WhatsApp Image 2023-11-25 at 6 34 02 PM](https://github.com/meslhy/news_app/assets/100445840/c9ff2de5-6b58-417a-87a2-9c6a85ccece6)
 
