@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:news_app/ui/screens/home/home_screen.dart';
 import 'package:news_app/ui/utils/app_assets.dart';
 import 'package:news_app/ui/utils/app_colors.dart';
@@ -16,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 2), (){
+    Future.delayed(const Duration(seconds: 4), (){
       Navigator.pushReplacementNamed(context, HomeScreen.roteName);
     });
   }
@@ -34,9 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
           ),
           Center(
-            child: Image.asset(
-                AppAssets.splashLogo,
-                fit: BoxFit.fitHeight),
+            child: Lottie.asset("assets/icons/news_splash.json"),
           ),
         ],
       ),

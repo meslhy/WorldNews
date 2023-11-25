@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/data/model/api_manager.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/data/repos/news_repo/data_sources/onLine_data_source.dart';
 import 'package:news_app/data/model/category_dm/category_dm.dart';
 import 'package:news_app/data/model/sources_response/sources_response.dart';
 import 'package:news_app/ui/screens/home/tabs/news_tab/news_list.dart';
+import 'package:news_app/ui/screens/home/tabs/news_tab/news_tab_view_model.dart';
 import 'package:news_app/ui/utils/app_colors.dart';
+import 'package:provider/provider.dart';
 
 class NewsTab extends StatefulWidget {
 
@@ -13,27 +16,34 @@ class NewsTab extends StatefulWidget {
 
   @override
   State<NewsTab> createState() => _NewsTabState();
+
 }
 
 class _NewsTabState extends State<NewsTab> with TickerProviderStateMixin{
   int currentTabIndex = 0;
+   NewsTabViewModel viewModel = NewsTabViewModel();
+  @override
+  void initState() {
+    super.initState();
+   viewModel.getSources(widget.categoryDM.id);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: ApiManager.getSources(widget.categoryDM.id),
-        builder: (context, snapshot) {
-          if(snapshot.hasData) {
-              return buildTads(snapshot.data!.sources!);
-            }
-          else if(snapshot.hasError) {
-                return Text(snapshot.error.toString());
-              }
-          else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        } ,
-    );
+    return BlocBuilder<NewsTabViewModel ,NewsTabInitialState>(
+      bloc: viewModel,
+      builder: (context, state) {
+        late Widget currentView;
+        if(state is NewsTabLoadingState){
+          currentView =  const Center(child: CircularProgressIndicator());
+        }else if(state is NewsTabSuccessState){
+          currentView = buildTads(state.sources);
+        }else{
+          Text((state as NewsTabErrorState).errorMessage);
+        }
+        return currentView;
+      } ,
+        );
   }
 
   Widget buildTads(List<Source> sources) => DefaultTabController(

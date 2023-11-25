@@ -3,13 +3,13 @@ import 'package:http/http.dart';
 import 'package:news_app/data/model/articles_responses/articles_responses.dart';
 import 'package:news_app/data/model/sources_response/sources_response.dart';
 
-abstract class ApiManager{
+ class OnLineDataSource{
 
 
   static const String baseUrl = "newsapi.org";
   static const String apiKey = "ca8aec7f6dba4a078b911ccf7dd2095e";
 
-  static Future<SourcesResponse> getSources(String categoryId) async {
+   Future<SourcesResponse> getSources(String categoryId) async {
     try {
       Uri url = Uri.parse("https://$baseUrl/v2/top-headlines/sources?apiKey=$apiKey&&category=$categoryId");
       Response response = await get(url);
@@ -26,8 +26,8 @@ abstract class ApiManager{
   }
 
 
-  // Uri url = Uri.parse("https://$baseUrl/v2/everything?apiKey=$apiKey&sources=$sourceId");
-  static Future<ArticlesResponses> getArticles({required String requestParameter, required String stringOfRequestParameter})async{
+
+   Future<ArticlesResponses> getArticles({required String requestParameter, required String stringOfRequestParameter})async{
     try{
       Uri url = Uri.https(baseUrl, "/v2/everything", {
         "apiKey": apiKey,
@@ -40,14 +40,12 @@ abstract class ApiManager{
           articlesResponse.articles?.isNotEmpty == true){
         return articlesResponse;
       }else {
-        print("Erorrrrrrrrrrrrrrrrrrrrrrrrr");
         throw Exception(articlesResponse.message);
       }
     }catch(_){
       rethrow;
     }
   }
-
 
 
 }

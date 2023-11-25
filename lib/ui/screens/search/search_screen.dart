@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:news_app/data/model/api_manager.dart';
+import 'package:news_app/data/repos/news_repo/data_sources/onLine_data_source.dart';
 import 'package:news_app/data/model/articles_responses/articles_responses.dart';
 import 'package:news_app/ui/utils/app_colors.dart';
 import 'package:news_app/ui/widgets/article_widget.dart';
@@ -51,7 +51,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   icon: Icon(Icons.clear_outlined , color: AppColors.primary, size: 30),
               ),
               hintText: "Search Article",
-              hintStyle: Theme.of(context).textTheme.titleSmall!.copyWith(color: AppColors.greyGreen),
+              hintStyle: Theme.of(context).textTheme.titleSmall!.copyWith(color: AppColors.greyPrimary),
               border: InputBorder.none,
             ),
             cursorColor: AppColors.primary,
@@ -62,25 +62,28 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
         toolbarHeight: MediaQuery.of(context).size.height * .11,
       ),
-      body: FutureBuilder(
-        future: ApiManager.getArticles(requestParameter: "q",stringOfRequestParameter: changTextController.text??"" ),
-        builder: (context, snapshot) {
-          if(snapshot.hasData) {
-            return buildListView(snapshot.data!.articles!);
-          }
-          else if(snapshot.hasError) {
-            return  Center(
-              child: Text(
-                "write anything to search...",
-                style: Theme.of(context).textTheme.labelLarge!.copyWith(color: AppColors.primary,
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: FutureBuilder(
+          future: OnLineDataSource().getArticles(requestParameter: "q",stringOfRequestParameter: changTextController.text??"" ),
+          builder: (context, snapshot) {
+            if(snapshot.hasData) {
+              return buildListView(snapshot.data!.articles!);
+            }
+            else if(snapshot.hasError) {
+              return  Center(
+                child: Text(
+                  "write anything to search...",
+                  style: Theme.of(context).textTheme.labelLarge!.copyWith(color: AppColors.primary,
+                  ),
                 ),
-              ),
-            );
-          }
-          else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
+              );
+            }
+            else {
+              return const Center(child: CircularProgressIndicator(color: AppColors.primary,));
+            }
+          },
+        ),
       ),
     );
   }

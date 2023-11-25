@@ -5,35 +5,28 @@ import 'package:news_app/ui/utils/app_colors.dart';
 class CategoriesWidget extends StatelessWidget {
 
   final CategoryDM categoryDM ;
-  final Radius radius = const Radius.circular(24);
+  // final Radius radius = const Radius.circular(24);
 
   const CategoriesWidget({super.key,required this.categoryDM});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 120,
       decoration: BoxDecoration(
-        color:categoryDM.backgroundColor ,
-        borderRadius: BorderRadius.only(
-            topLeft: radius,
-            topRight: radius,
-            bottomLeft: categoryDM.isLeftSided? Radius.zero : radius,
-            bottomRight: !categoryDM.isLeftSided? Radius.zero : radius,
+        color: AppColors.primary,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Center(
+        child: Text(
+            categoryDM.id,
+          style:const TextStyle(
+            color: AppColors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 18
+          ),
         ),
       ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(categoryDM.imagePath , height: MediaQuery.of(context).size.height *.12,),
-            const SizedBox(height: 8,),
-            Text(
-              categoryDM.title,
-              style:const TextStyle(
-                color: AppColors.white
-              ),
-            ),
-          ],
-        ),
     );
   }
 }

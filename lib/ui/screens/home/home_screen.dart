@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         child: Scaffold(
           appBar: AppBar(
-            title: const Text("News App"),
+            title: const Text("WorldNews"),
             toolbarHeight: MediaQuery.of(context).size.height * .1,
             actions: [
               InkWell(
