@@ -32,11 +32,11 @@ class _SearchScreenState extends State<SearchScreen> {
             decoration:  InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(50),
-                borderSide: BorderSide(color: AppColors.primary,width: 2),
+                borderSide: const BorderSide(color: AppColors.greyPrimary,width: 2),
               ),
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(50),
-                  borderSide: BorderSide(color: AppColors.primary,width: 2)
+                  borderSide: const BorderSide(color: AppColors.primary,width: 2)
               ),
               filled: true,
               fillColor:AppColors.white,
@@ -48,7 +48,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     changTextController.text = "";
                     setState(() {});
                   },
-                  icon: Icon(Icons.clear_outlined , color: AppColors.primary, size: 30),
+                  icon: const Icon(Icons.clear_outlined , color: AppColors.primary, size: 30),
               ),
               hintText: "Search Article",
               hintStyle: Theme.of(context).textTheme.titleSmall!.copyWith(color: AppColors.greyPrimary),

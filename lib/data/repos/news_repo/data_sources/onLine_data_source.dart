@@ -43,7 +43,7 @@ import 'package:news_app/data/model/sources_response/sources_response.dart';
         throw Exception(articlesResponse.message);
       }
     }catch(_){
-      rethrow;
+      rethrow ;
     }
   }
 

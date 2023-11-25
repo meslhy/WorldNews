@@ -39,7 +39,7 @@ class _NewsTabState extends State<NewsTab> with TickerProviderStateMixin{
         }else if(state is NewsTabSuccessState){
           currentView = buildTads(state.sources);
         }else{
-          Text((state as NewsTabErrorState).errorMessage);
+          currentView = Center(child: Text((state as NewsTabErrorState).errorMessage ,style: TextStyle(color:AppColors.accent ),));
         }
         return currentView;
       } ,

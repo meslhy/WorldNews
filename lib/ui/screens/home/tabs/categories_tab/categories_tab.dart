@@ -35,7 +35,7 @@ class _CategoriesTabState extends State<CategoriesTab> {
              width: MediaQuery.of(context).size.width * .3,
              child: Text(
                 "Pick your category of interest",
-              style: Theme.of(context).textTheme.labelLarge!.copyWith(fontSize: 16,color: AppColors.primary),
+              style: Theme.of(context).textTheme.labelLarge!.copyWith(fontSize: 16,color: AppColors.accent),
                maxLines: 2,
                softWrap: true,
           ),

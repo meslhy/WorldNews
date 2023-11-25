@@ -85,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
           decoration:const BoxDecoration(color: AppColors.primary ),
             child:Center(
                 child: Text(
-                  "News App !" ,
+                  "WorldNews !" ,
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.white),
                 ),
             ),
@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
            const SizedBox(width: 20,),
            Icon(iconData ,size: 24),
            const SizedBox(width: 8,),
-           Text(title , style: Theme.of(context).textTheme.labelLarge?.copyWith(fontSize:24 ),),
+           Text(title , style: Theme.of(context).textTheme.labelLarge?.copyWith(fontSize:24 ,color: AppColors.accent),),
          ],
        ),
      );

@@ -28,7 +28,7 @@ class NewsTabViewModel extends Cubit<NewsTabInitialState>{
     }catch(e){
       isLoading = false;
       //notifyListeners();
-      emit(NewsTabErrorState(e.toString()));
+      emit(NewsTabErrorState("Errors doing try again later"));
     }
 
 
