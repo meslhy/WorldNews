@@ -79,7 +79,7 @@ class _CategoriesTabState extends State<CategoriesTab> {
                     );
                   }
                   else {
-                    return  Lottie.asset("assets/icons/not_found.json");
+                    return   Lottie.asset("assets/icons/loading.json");
                   }
                 },
               ),
